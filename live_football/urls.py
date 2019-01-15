@@ -14,9 +14,19 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth import views as auth_views
 
+from . import views
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-
+    url(r'^$', views.home, name='home'),
+    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^login/$', auth_views.login, {'template_name': 'signin.html'}, name='login'),
+    url(r'^signout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
 ]
 #test
+urlpatterns += staticfiles_urlpatterns()
