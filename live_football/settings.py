@@ -52,6 +52,9 @@ MIDDLEWARE_CLASSES = (
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='51507645333-o92125m6vo8d93v5vi66cqoifdn11ik1.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ='PFDQtFFGzPTyZjJRQw9gvibj'
 ROOT_URLCONF = 'live_football.urls'
+SOCIAL_AUTH_GITHUB_KEY = '1d5216d336dcf06cda2d'
+SOCIAL_AUTH_GITHUB_SECRET = 'd6544c23868b38d42acab1890029d206d065c608'
+
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
     'social_core.backends.google.GoogleOpenId',  # for Google authentication
