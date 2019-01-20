@@ -21,8 +21,10 @@ from . import views
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 urlpatterns = [
+    url(r'^blogs/', include('Blogs.urls', namespace='Blogs')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.home, name='home'),
+    url(r'^score/$',include('scores.urls', namespace='scores')),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),

@@ -1,0 +1,140 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Football Live</title>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"  media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'js/jquery.min.js' %}" ></script>
+<!--theme-style-->
+<link href="{% static 'css/style.css' %}" rel="stylesheet"  media="all" />
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Passion+One:400,700,900' rel='stylesheet' type='text/css'>
+<!--//fonts-->
+<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+ <script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+      $("#slider2").responsiveSlides({
+        auto: true,
+        pager: true,
+        speed: 300,
+        namespace: "callbacks",
+      });
+    });
+  </script>
+</head>
+<body>
+<!--header
+	<div class="header">
+		<div class="header-top">
+			<div class="container">
+			<p class="header-para"</p>
+
+				<ul class="sign">
+					<li ><a href="signin.html" >SIGN IN</a></li>
+					<li><a href="#" ><span > </span></a></li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+	</div>-->
+	<div class="header-bottom-top">
+		<div class="container">
+			<!--<div class="search">
+				<input type="text" value="Search website" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+				<input type="submit"  value="">
+			</div>
+			<div class="clearfix"> </div>-->
+			<div class="header-bottom">
+				<div class="logo">
+					<span class="menu"> </span>
+					<h1>Football Live</h1>
+				</div>
+				<div class="top-nav">
+					<span class="menu"> </span>
+					<ul>
+						<li ><a href="{% url 'home' %}" class="scroll">Home</a></li>
+						<!--<li><a href="about.html" class="scroll"> About</a></li>-->
+						<li><a href="teams.html" class="scroll">Teams</a></li>
+						<li><a href="services.html" class="scroll">Blogs</a></li>
+						<!--<li><a href="sports.html" class="scroll">Sports </a></li>-->
+						<!--<li><a href="contact.html" class="scroll">Contact</a></li>-->
+						{% if user.is_authenticated %}
+           				  <li ><a>Hello, {{ user.username }}</a></li>
+           				  <li ><a href="{% url 'logout' %}"  >Log Out</a></li>
+						{% else %}
+						<li ><a href="{% url 'login' %}" class="scroll" >Log In</a></li>
+						<li ><a href="{% url 'signup' %}" class="scroll" >Sign Up</a></li>
+						{% endif %}
+
+
+					</ul>
+					<!--script-->
+				<<script>
+					$("span.menu").click(function(){
+						$(".top-nav ul").slideToggle(500, function(){
+						});
+					});
+			</script>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		</div>
+	</div>
+	{%block content %}
+
+
+		<div class="content-app-up">
+			<div class="container">
+			<span class="line"> </span>
+			<h3>Trending Blogs
+			<div class="regard">
+				{% for blog in blogs %}
+				<div class="regard-in">
+					<h2>{{ blog.title }}
+					<p>{{ blog.body }}</p>
+					<a href="#"><span> </span></a>
+				</div>
+				{% endfor %}
+
+
+
+			</div>
+			</div>
+		</div>
+		<!---->
+	</div>
+	{% endblock %}
+	<!--footer-->
+	<div class="footer">
+		<div class="container">
+
+			<div class="foter-bottom">
+				<div class=" nav-top">
+					<ul>
+						<li ><a href="{% url 'home' %}" class="scroll">Home</a></li>
+						<!--<li><a href="about.html" class="scroll"> About</a></li>-->
+						<li><a href="teams.html" class="scroll">Teams</a></li>
+						<li><a href="services.html" class="scroll">Blogs</a></li>
+						<!--<li><a href="sports.html" class="scroll">Sports </a></li>-->
+						<!--<li><a href="contact.html" class="scroll">Contact</a></li>-->
+						{% if user.is_authenticated %}
+           				  <li ><a>Hello, {{ user.username }}</a></li>
+           				  <li ><a href="{% url 'logout' %}"  >Log Out</a></li>
+						{% else %}
+						<li ><a href="{% url 'login' %}" class="scroll" >Log In</a></li>
+						<li ><a href="{% url 'signup' %}" class="scroll" >Sign Up</a></li>
+						{% endif %}
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+			</div>
+
+		</body>
+		</html>
