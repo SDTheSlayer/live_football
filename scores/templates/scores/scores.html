@@ -1,12 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% for score in scores %}
-    {{ score.team1 }} {{ score.score1 }} {{ score.score2 }} {{ score.team2 }}
-    {% endfor %}
-</body>
-</html>
+{% extends 'index.html' %}
+{% block content %}
+	<div class="content-app-up">
+			<div class="container">
+			<span class="line"> </span>
+			<h3>Current Matches</h3><br>
+			<table style="width:100%">
+  			<tr>
+			    <th>Time</th>
+			    <th>Home Team </th> 
+			    <th>Score</th>
+			    <th>Away team</th>
+		  	</tr>
+		    {% for score in Current %}
+				<tr>
+			    <td>{{ score.time }}</td>
+			    <td>{{ score.team1 }}</td>
+			    <td>{{ score.score1 }} - {{ score.score2 }}  </td> 
+			    <td> {{ score.team2 }}</td>
+			 	</tr>
+			{% endfor %}
+   			 </table>
+
+			<h3>Finished Matches</h3><br>
+			<table style="width:100%">
+  			<tr>
+			    <th>Time</th>
+			    <th>Home Team </th> 
+			    <th>Score</th>
+			    <th>Away team</th>
+		  	</tr>
+		    {% for score in Finished %}
+				<tr>
+			    <td>{{ score.time }}</td>
+			    <td>{{ score.team1 }}</td>
+			    <td>{{ score.score1 }} - {{ score.score2 }}  </td> 
+			    <td> {{ score.team2 }}</td>
+			 	</tr>
+			{% endfor %}
+   			 </table>
+			<h3>Upcoming Matches</h3>
+			<br>
+			<table style="width:100%">
+  			<tr>
+			    <th>Time</th>
+			    <th>Home Team </th> 
+			    <th>Score</th>
+			    <th>Away team</th>
+		  	</tr>
+		    {% for score in Upcoming %}
+				<tr>
+			    <td>{{ score.time }}</td>
+			    <td>{{ score.team1 }}</td>
+			    <td>{{ score.score1 }} - {{ score.score2 }}  </td> 
+			    <td> {{ score.team2 }}</td>
+			 	</tr>
+			{% endfor %}
+   			 </table>
+   			</div>
+   			<br> <br>
+   		</div>
+{% endblock %}
