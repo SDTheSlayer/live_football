@@ -11,7 +11,7 @@ def blog_list(request):
     blogs = models.Blog.objects.all()
     return render(request, 'Blogs/blog_list.html', {'blogs': blogs})
 
-
+@login_required()
 def blog_detail(request, pk):
     blog = models.Blog.objects.get(id=pk)
     comments = blog.comment_set.all()
