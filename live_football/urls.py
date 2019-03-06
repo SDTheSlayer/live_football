@@ -16,7 +16,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views as auth_views
-
+from scores.views import get_scores
 from . import views
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^auth/', include('social_django.urls', namespace='social')),
 ]
+get_scores(repeat=20, repeat_until=None)
 #test
 urlpatterns += staticfiles_urlpatterns()

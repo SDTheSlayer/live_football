@@ -1,15 +1,14 @@
 from django.shortcuts import get_object_or_404, render
 from django.db import models
+from background_task import background
 from .models import scores
 import bs4 as bs
 from selenium import webdriver
 
-
-
-def score_list(request):
+@background(schedule = 1)
+def get_scores():
+    print("Check")
     all = scores.objects.all()
-    for score in all :
-        score.delete()
     url = 'http://m.livescore.com/'
     browser = webdriver.Chrome()
     browser.get(url)
@@ -29,6 +28,11 @@ def score_list(request):
             score.team2 = name[1].getText()
             score.score2 = Sc[1].getText()
             score.save()
+    for score in all:
+        score.delete()
+
+
+def score_list(request):
     current = scores.objects.exclude(time__contains=':').exclude(time='FT').order_by('time')
     finished = scores.objects.filter(time='FT')
     upcoming = scores.objects.filter(time__contains=':').order_by('time')

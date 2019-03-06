@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'social_django',
     'scores',
     'Blogs',
+    'background_task',
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
